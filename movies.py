@@ -25,25 +25,25 @@ def main():
             list_all_movies(movies)
 
         elif user_choice == "2":
-            print(f"user choice 2 is: {user_choice}")
+            add_new_movie(movies)
 
         elif user_choice == "3":
-            print(f"user choice 3 is: {user_choice}")
+            pass
 
         elif user_choice == "4":
-            print(f"user choice 4 is: {user_choice}")
+            pass
 
         elif user_choice == "5":
-            print(f"user choice 5 is: {user_choice}")
+            pass
 
         elif user_choice == "6":
-            print(f"user choice 6 is: {user_choice}")
+            pass
 
         elif user_choice == "7":
-            print(f"user choice 7 is: {user_choice}")
+            pass
 
         elif user_choice == "8":
-            print(f"user choice 8 is: {user_choice}")
+            pass
 
         else:
             print("Invalid choice. Try again.")
