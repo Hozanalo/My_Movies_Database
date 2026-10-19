@@ -25,25 +25,25 @@ def main():
             list_all_movies(movies)
 
         elif user_choice == "2":
-            add_new_movie(movies)
+            print(f"user choice 2 is: {user_choice}")
 
         elif user_choice == "3":
-            pass
+            print(f"user choice 3 is: {user_choice}")
 
         elif user_choice == "4":
-            pass
+            print(f"user choice 4 is: {user_choice}")
 
         elif user_choice == "5":
-            pass
+            print(f"user choice 5 is: {user_choice}")
 
         elif user_choice == "6":
-            pass
+            print(f"user choice 6 is: {user_choice}")
 
         elif user_choice == "7":
-            pass
+            print(f"user choice 7 is: {user_choice}")
 
         elif user_choice == "8":
-            pass
+            print(f"user choice 8 is: {user_choice}")
 
         else:
             print("Invalid choice. Try again.")
@@ -80,46 +80,6 @@ def list_all_movies(movies):
 
     input("\nPress Enter to go back to the main menu...")
 
-
-# TODO Add new movie to Movies list. Validate and check user input
-def add_new_movie(movies):
-    new_movie_name = input("Enter new movie name: ")
-
-    while True:
-        new_movie_rating = input("Enter new movie rating (0-10): ")
-
-        try:
-            new_movie_rating = float(new_movie_rating)
-
-            if 0 <= new_movie_rating <= 10 and new_movie_rating * 10 % 1 == 0:
-                break
-            else:
-                print("Invalid rating! Enter a number between 0 and 10 with max 1 decimal place.")
-
-        except ValueError:
-            print("Invalid input! Enter a valid number.")
-
-    movies.update({new_movie_name: new_movie_rating})
-    print(f"Movie {new_movie_name} with rating {new_movie_rating} successfully added")
-
-    input("\nPress Enter to go back to the main menu...")
-
-    return movies
-
-
-
-
-# TODO Delete movie
-
-# TODO Update movie
-
-# TODO Stats
-
-# TODO Random movie
-
-# TODO Search movie
-
-# TODO Movies sorted by rating
 
 
 if __name__ == "__main__":
