@@ -31,7 +31,7 @@ Coming soon
 - [x] Display all available movies
 - [x] Add new movies
 - [ ] Update existing movies
-- [ ] Delete movies
+- [x] Delete movies
 - [ ] View movie statistics
 - [ ] Select a random movie
 - [ ] Search for movies
