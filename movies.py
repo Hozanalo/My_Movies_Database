@@ -106,5 +106,17 @@ def add_new_movie(movies):
 
     return movies
 
+# TODO: Delete movie.
+
+# TODO: Update movie.
+
+# TODO: Stats.
+
+# TODO: Random movie.
+
+# TODO: Search movie.
+
+# TODO: Movies sorted by rating.
+
 if __name__ == "__main__":
     main()
