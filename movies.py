@@ -14,27 +14,37 @@ def main():
         "Star Wars: Episode V": 8.7
     }
 
-    run_menu()
 
+    # Handle user input handling for options 1-8.
+    # Display an error message for invalid choices and allow users to select another option
     while True:
+        run_menu()
         user_choice = input("Enter choice (1-8): ")
 
         if user_choice == "1":
-            print(f"user choice 1 is: {user_choice}")
+            list_all_movies(movies)
+
         elif user_choice == "2":
             print(f"user choice 2 is: {user_choice}")
+
         elif user_choice == "3":
             print(f"user choice 3 is: {user_choice}")
+
         elif user_choice == "4":
             print(f"user choice 4 is: {user_choice}")
+
         elif user_choice == "5":
             print(f"user choice 5 is: {user_choice}")
+
         elif user_choice == "6":
             print(f"user choice 6 is: {user_choice}")
+
         elif user_choice == "7":
             print(f"user choice 7 is: {user_choice}")
+
         elif user_choice == "8":
             print(f"user choice 8 is: {user_choice}")
+
         else:
             print("Invalid choice. Try again.")
         continue
@@ -57,6 +67,14 @@ Menu:
 
     """)
 
+
+# Display all available Movies
+def list_all_movies(movies):
+    print("All available Movies:")
+    for movie in movies:
+        print(movie)
+
+    input("\nPress Enter to go back to the main menu...")
 
 
 
