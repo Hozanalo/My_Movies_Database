@@ -28,7 +28,7 @@ Coming soon
 
 ## Project Roadmap
 
-- [ ] Display all available movies
+- [x] Display all available movies
 - [ ] Add new movies
 - [ ] Update existing movies
 - [ ] Delete movies
