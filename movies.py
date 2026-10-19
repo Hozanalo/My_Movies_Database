@@ -14,6 +14,30 @@ def main():
         "Star Wars: Episode V": 8.7
     }
 
+    run_menu()
+
+    while True:
+        user_choice = input("Enter choice (1-8): ")
+
+        if user_choice == "1":
+            print(f"user choice 1 is: {user_choice}")
+        elif user_choice == "2":
+            print(f"user choice 2 is: {user_choice}")
+        elif user_choice == "3":
+            print(f"user choice 3 is: {user_choice}")
+        elif user_choice == "4":
+            print(f"user choice 4 is: {user_choice}")
+        elif user_choice == "5":
+            print(f"user choice 5 is: {user_choice}")
+        elif user_choice == "6":
+            print(f"user choice 6 is: {user_choice}")
+        elif user_choice == "7":
+            print(f"user choice 7 is: {user_choice}")
+        elif user_choice == "8":
+            print(f"user choice 8 is: {user_choice}")
+        else:
+            print("Invalid choice. Try again.")
+        continue
 
 
 
@@ -36,7 +60,5 @@ Menu:
 
 
 
-
 if __name__ == "__main__":
     main()
-    run_menu()
