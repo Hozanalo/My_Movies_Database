@@ -72,7 +72,7 @@ Menu:
 def list_all_movies(movies):
 
     if len(movies) == 0:
-        print("The are no movies to display")
+        print("There are no movies to display")
     else:
         print("All available Movies:")
         for movie in movies:
