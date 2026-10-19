@@ -8,8 +8,14 @@ This project is part of my Python learning journey. It will grow over time as I 
 
 ## Features
 
-**Planned features:**
-- comming soon
+- Display all available movies
+- Add new movies
+- Update existing movies
+- Delete movies
+- View movie statistics
+- Select a random movie
+- Search for movies
+- Sort movies by rating
 
 ## Technologies
 
@@ -18,11 +24,18 @@ This project is part of my Python learning journey. It will grow over time as I 
 
 ## How to Run
 
-comming soon
+Coming soon
 
 ## Project Roadmap
 
-- [ ] comming soon
+- [ ] Display all available movies
+- [ ] Add new movies
+- [ ] Update existing movies
+- [ ] Delete movies
+- [ ] View movie statistics
+- [ ] Select a random movie
+- [ ] Search for movies
+- [ ] Sort movies by rating
 
 ## Project Status 
 
