@@ -70,9 +70,13 @@ Menu:
 
 # Display all available Movies
 def list_all_movies(movies):
-    print("All available Movies:")
-    for movie in movies:
-        print(movie)
+
+    if len(movies) == 0:
+        print("The are no movies to display")
+    else:
+        print("All available Movies:")
+        for movie in movies:
+            print(movie)
 
     input("\nPress Enter to go back to the main menu...")
 
