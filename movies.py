@@ -81,6 +81,30 @@ def list_all_movies(movies):
     input("\nPress Enter to go back to the main menu...")
 
 
+# Add new movie to Movies list. Validate and check user input
+def add_new_movie(movies):
+    new_movie_name = input("Enter new movie name: ")
+
+    while True:
+        new_movie_rating = input("Enter new movie rating (0-10): ")
+
+        try:
+            new_movie_rating = float(new_movie_rating)
+
+            if 0 <= new_movie_rating <= 10 and new_movie_rating * 10 % 1 == 0:
+                break
+            else:
+                print("Invalid rating! Enter a number between 0 and 10 with max 1 decimal place.")
+
+        except ValueError:
+            print("Invalid input! Enter a valid number.")
+
+    movies.update({new_movie_name: new_movie_rating})
+    print(f"Movie {new_movie_name} with rating {new_movie_rating} successfully added")
+
+    input("\nPress Enter to go back to the main menu...")
+
+    return movies
 
 if __name__ == "__main__":
     main()
