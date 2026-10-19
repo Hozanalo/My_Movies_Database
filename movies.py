@@ -28,7 +28,7 @@ def main():
             add_new_movie(movies)
 
         elif user_choice == "3":
-            pass
+            delete_movie(movies)
 
         elif user_choice == "4":
             pass
@@ -69,6 +69,8 @@ Menu:
 
 
 # Display all available Movies
+# TODO add total movie count on the top of the list "<Movies Count here> movies in total"
+# TODO add movie rating to the right side of each movie
 def list_all_movies(movies):
 
     if len(movies) == 0:
@@ -106,7 +108,22 @@ def add_new_movie(movies):
 
     return movies
 
-# TODO: Delete movie.
+
+# Delete movie.
+def delete_movie(movies):
+
+    ask_user_delete = input("Enter movie name to delete: ")
+
+    if ask_user_delete in movies:
+        del movies[ask_user_delete]
+        print(f"{ask_user_delete} successfully deleted")
+
+    else:
+        print(f"{ask_user_delete} doesn't exist!")
+
+    input("\nPress Enter to go back to the main menu...")
+
+
 
 # TODO: Update movie.
 
