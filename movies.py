@@ -48,8 +48,6 @@ def main():
 
         else:
             print("Invalid choice. Try again.")
-        continue
-
 
 
 # Display the main menu for the user
@@ -68,46 +66,55 @@ Menu:
 
     """)
 
+# Rating input validation
+def get_valid_rating():
+    while True:
+        user_input = input("Enter movie rating (0-10): ")
+
+        try:
+            rating = float(user_input)
+
+            if 1 <= rating <= 10 and round(rating, 2) == rating:
+                return rating
+
+            print("Invalid rating! Enter 0-10.")
+
+        except ValueError:
+            print("Invalid input! Enter a valid number.")
+
 
 # Display all available Movies
-# TODO add total movie count on the top of the list "<Movies Count here> movies in total"
-# TODO add movie rating to the right side of each movie
 def list_all_movies(movies):
-
     if len(movies) == 0:
         print("There are no movies to display")
     else:
-        print("All available Movies:")
+        total_movies = len(movies)
+        print(f"\n--- {total_movies} movies in total ---")
+
         for movie, rate in movies.items():
-            print(f"- {movie}")
+            print(f"- {movie} {rate}")
 
     input("\nPress Enter to go back to the main menu...")
 
 
 # Add new movie to Movies list. Validate and check user input
 def add_new_movie(movies):
-    new_movie_name = input("Enter new movie name: ")
+    new_movie_name = input("Enter new movie name: ").strip()
 
-    while True:
-        new_movie_rating = input("Enter new movie rating (0-10): ")
+    if not new_movie_name:
+        print("Movie name cannot be empty!")
+        return
 
-        try:
-            new_movie_rating = float(new_movie_rating)
+    if new_movie_name in movies:
+        print("Movie already exists!")
+        return
 
-            if 0 <= new_movie_rating <= 10 and new_movie_rating * 10 % 1 == 0:
-                break
-            else:
-                print("Invalid rating! Enter a number between 0 and 10 with max 1 decimal place.")
+    new_movie_rating = get_valid_rating()
 
-        except ValueError:
-            print("Invalid input! Enter a valid number.")
-
-    movies.update({new_movie_name: new_movie_rating})
+    movies[new_movie_name] = new_movie_rating
     print(f"Movie {new_movie_name} with rating {new_movie_rating} successfully added")
 
     input("\nPress Enter to go back to the main menu...")
-
-    return movies
 
 
 # Delete movie.
@@ -130,24 +137,12 @@ def delete_movie(movies):
 def update_movie_rate(movies):
     ask_user_update_name = input("Enter movie name: ")
 
-    if ask_user_update_name not in movies and len(ask_user_update_name) == 0:
+    if ask_user_update_name not in movies:
         print(f"Movie {ask_user_update_name} doesn't exist!")
     else:
-        while True:
-            ask_user_update_rate = input("Enter new movie rating (0-10): ")
+        new_movie_rating = get_valid_rating()
 
-            try:
-                ask_user_update_rate = float(ask_user_update_rate)
-
-                if 0 <= ask_user_update_rate <= 10 and ask_user_update_rate * 10 % 1 == 0:
-                    break
-                else:
-                    print(f"Rating {ask_user_update_rate} is invalid invalid! Enter a number between 0 and 10.")
-
-            except ValueError:
-                print("Invalid input! Enter a valid number.")
-
-        movies[ask_user_update_name] = ask_user_update_rate
+        movies[ask_user_update_name] = new_movie_rating
 
         print(f"Movie {ask_user_update_name} successfully updated")
 
