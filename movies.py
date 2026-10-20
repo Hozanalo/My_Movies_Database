@@ -11,7 +11,8 @@ def main():
         "12 Angry Men": 8.9,
         "Everything Everywhere All At Once": 8.9,
         "Forrest Gump": 8.8,
-        "Star Wars: Episode V": 8.7
+        "Star Wars: Episode V": 8.7,
+        "q": 1
     }
 
 
@@ -31,7 +32,7 @@ def main():
             delete_movie(movies)
 
         elif user_choice == "4":
-            pass
+            update_movie_rate(movies)
 
         elif user_choice == "5":
             pass
@@ -77,8 +78,8 @@ def list_all_movies(movies):
         print("There are no movies to display")
     else:
         print("All available Movies:")
-        for movie in movies:
-            print(movie)
+        for movie, rate in movies.items():
+            print(f"- {movie}")
 
     input("\nPress Enter to go back to the main menu...")
 
@@ -125,7 +126,35 @@ def delete_movie(movies):
 
 
 
-# TODO: Update movie.
+# update the rating of an existing movie.
+def update_movie_rate(movies):
+    ask_user_update_name = input("Enter movie name: ")
+
+    if ask_user_update_name not in movies and len(ask_user_update_name) == 0:
+        print(f"Movie {ask_user_update_name} doesn't exist!")
+    else:
+        while True:
+            ask_user_update_rate = input("Enter new movie rating (0-10): ")
+
+            try:
+                ask_user_update_rate = float(ask_user_update_rate)
+
+                if 0 <= ask_user_update_rate <= 10 and ask_user_update_rate * 10 % 1 == 0:
+                    break
+                else:
+                    print(f"Rating {ask_user_update_rate} is invalid invalid! Enter a number between 0 and 10.")
+
+            except ValueError:
+                print("Invalid input! Enter a valid number.")
+
+        movies[ask_user_update_name] = ask_user_update_rate
+
+        print(f"Movie {ask_user_update_name} successfully updated")
+
+    input("\nPress Enter to go back to the main menu...")
+
+
+
 
 # TODO: Stats.
 
