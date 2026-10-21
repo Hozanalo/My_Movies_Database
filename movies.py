@@ -43,7 +43,7 @@ def main():
             random_movie(movies)
 
         elif user_choice == "7":
-            pass
+            search_movies(movies)
 
         elif user_choice == "8":
             pass
@@ -71,7 +71,7 @@ Menu:
 # Rating input validation
 def get_valid_rating():
     while True:
-        user_input = input("Enter movie rating (0-10): ")
+        user_input = input("Enter movie rating (1-10): ")
 
         try:
             rating = float(user_input)
@@ -79,7 +79,7 @@ def get_valid_rating():
             if 1 <= rating <= 10 and round(rating, 2) == rating:
                 return rating
 
-            print("Invalid rating! Enter 0-10.")
+            print("Invalid rating! Enter 1-10.")
 
         except ValueError:
             print("Invalid input! Enter a valid number.")
@@ -182,9 +182,27 @@ def random_movie(movies):
     input("\nPress Enter to go back to the main menu...")
 
 
-# TODO: Search movie.
+# Search movies.
+def search_movies(movies):
+    ask_user_search_movies = input("Enter part of movie name: ").strip().lower()
+
+    if len(movies) == 0:
+        print("There are no movies to choose from")
+    else:
+        found = False
+        for movie, rate in movies.items():
+            if ask_user_search_movies in movie.lower():
+                print(f"{movie}, {rate}")
+                found = True
+
+        if not found:
+            print("No matching movies found!")
+
+    input("\nPress Enter to go back to the main menu...")
+
 
 # TODO: Movies sorted by rating.
+
 
 if __name__ == "__main__":
     main()
