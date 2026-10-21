@@ -105,10 +105,12 @@ def add_new_movie(movies):
 
     if not new_movie_name:
         print("Movie name cannot be empty!")
+        input("\nPress Enter to go back to the main menu...")
         return
 
     if new_movie_name in movies:
         print("Movie already exists!")
+        input("\nPress Enter to go back to the main menu...")
         return
 
     new_movie_rating = get_valid_rating()
