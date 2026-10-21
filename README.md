@@ -35,7 +35,7 @@ Coming soon
 - [x] View movie statistics
 - [x] Select a random movie
 - [x] Search for movies
-- [ ] Sort movies by rating
+- [x] Sort movies by rating
 
 ## Project Status 
 
