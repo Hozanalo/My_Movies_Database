@@ -32,9 +32,9 @@ Coming soon
 - [x] Add new movies
 - [x] Update existing movies
 - [x] Delete movies
-- [ ] View movie statistics
-- [ ] Select a random movie
-- [ ] Search for movies
+- [x] View movie statistics
+- [x] Select a random movie
+- [x] Search for movies
 - [ ] Sort movies by rating
 
 ## Project Status 
