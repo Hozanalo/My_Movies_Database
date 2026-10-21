@@ -13,8 +13,7 @@ def main():
         "12 Angry Men": 8.9,
         "Everything Everywhere All At Once": 8.9,
         "Forrest Gump": 8.8,
-        "Star Wars: Episode V": 8.7,
-        "q": 1
+        "Star Wars: Episode V": 8.7
     }
 
 
@@ -157,19 +156,29 @@ def movies_stats(movies):
     if len(movies) == 0:
         print("There are no movies in the list to display their stats")
     else:
-        movies_best = max(movies, key=movies.get)
-        movies_worst = min(movies, key=movies.get)
+        highest_rating = max(movies.values())
+        lowest_rating = min(movies.values())
         rating_average = sum(movies.values()) / len(movies)
 
-        # find median rating
+        # Find median rating
         values = sorted(movies.values())
         n = len(values)
         rating_median = (values[(n-1)//2] + values[n//2]) / 2
 
         print(f"- Average rating: {rating_average:.2f}")
         print(f"- Median rating: {rating_median}")
-        print(f"- Best movie: {movies_best}, {movies[movies_best]}")
-        print(f"- Worst movie: {movies_worst}, {movies[movies_worst]}")
+
+        # Print all movies with the highest rating
+        print("- Best movies:")
+        for movie, rating in movies.items():
+            if rating == highest_rating:
+                print(f"  {movie}, {rating}")
+
+        # Print all movies with the lowest rating
+        print("- Worst movies:")
+        for movie, rating in movies.items():
+            if rating == lowest_rating:
+                print(f"  {movie}, {rating}")
 
     input("\nPress Enter to go back to the main menu...")
 
