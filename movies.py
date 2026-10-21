@@ -46,7 +46,7 @@ def main():
             search_movies(movies)
 
         elif user_choice == "8":
-            pass
+            movies_sorted(movies)
 
         else:
             print("Invalid choice. Try again.")
@@ -94,7 +94,7 @@ def list_all_movies(movies):
         print(f"\n--- {total_movies} movies in total ---")
 
         for movie, rate in movies.items():
-            print(f"- {movie} {rate}")
+            print(f"- {movie}: {rate}")
 
     input("\nPress Enter to go back to the main menu...")
 
@@ -201,7 +201,17 @@ def search_movies(movies):
     input("\nPress Enter to go back to the main menu...")
 
 
-# TODO: Movies sorted by rating.
+#Movies sorted by rating.
+def movies_sorted(movies):
+    if len(movies) == 0:
+        print("There are no movies in the list to show!")
+    else:
+        sorted_movies = sorted(movies.items(), key=lambda item:item[1], reverse=True)
+
+        for movie, rate in sorted_movies:
+            print(f"{movie}, {rate}")
+
+    input("\nPress Enter to go back to the main menu...")
 
 
 if __name__ == "__main__":
