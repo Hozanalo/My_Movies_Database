@@ -1,3 +1,5 @@
+import random
+
 
 def main():
     # Dictionary to store the movies and the rating
@@ -38,7 +40,7 @@ def main():
             movies_stats(movies)
 
         elif user_choice == "6":
-            pass
+            random_movie(movies)
 
         elif user_choice == "7":
             pass
@@ -149,7 +151,6 @@ def update_movie_rate(movies):
 
 
 # Movies stats.
-
 def movies_stats(movies):
     if len(movies) == 0:
         print("There are no movies in the list to display their stats")
@@ -170,7 +171,16 @@ def movies_stats(movies):
 
     input("\nPress Enter to go back to the main menu...")
 
-# TODO: Random movie.
+# Random movie.
+def random_movie(movies):
+    if len(movies) == 0:
+        print("There are no movies to choose from")
+    else:
+        movie = random.choice(list(movies.keys()))
+        print(f"Random movie: {movie}, {movies[movie]}")
+
+    input("\nPress Enter to go back to the main menu...")
+
 
 # TODO: Search movie.
 
