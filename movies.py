@@ -35,7 +35,7 @@ def main():
             update_movie_rate(movies)
 
         elif user_choice == "5":
-            pass
+            movies_stats(movies)
 
         elif user_choice == "6":
             pass
@@ -132,7 +132,6 @@ def delete_movie(movies):
     input("\nPress Enter to go back to the main menu...")
 
 
-
 # update the rating of an existing movie.
 def update_movie_rate(movies):
     ask_user_update_name = input("Enter movie name: ")
@@ -149,9 +148,27 @@ def update_movie_rate(movies):
     input("\nPress Enter to go back to the main menu...")
 
 
+# Movies stats.
 
+def movies_stats(movies):
+    if len(movies) == 0:
+        print("There are no movies in the list to display their stats")
+    else:
+        movies_best = max(movies, key=movies.get)
+        movies_worst = min(movies, key=movies.get)
+        rating_average = sum(movies.values()) / len(movies)
 
-# TODO: Stats.
+        # find median rating
+        values = sorted(movies.values())
+        n = len(values)
+        rating_median = (values[(n-1)//2] + values[n//2]) / 2
+
+        print(f"- Average rating: {rating_average:.2f}")
+        print(f"- Median rating: {rating_median}")
+        print(f"- Best movie: {movies_best}, {movies[movies_best]}")
+        print(f"- Worst movie: {movies_worst}, {movies[movies_worst]}")
+
+    input("\nPress Enter to go back to the main menu...")
 
 # TODO: Random movie.
 
