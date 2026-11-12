@@ -17,13 +17,17 @@ def main():
     }
 
 
-    # Handle user input handling for options 1-8.
+    # Handle user input handling for options 0-8.
     # Display an error message for invalid choices and allow users to select another option
     while True:
         run_menu()
-        user_choice = input("Enter choice (1-8): ")
+        user_choice = input("Enter choice (0-8): ")
 
-        if user_choice == "1":
+        if user_choice == "0":
+            print("Bye!")
+            break
+
+        elif user_choice == "1":
             list_all_movies(movies)
 
         elif user_choice == "2":
@@ -56,6 +60,7 @@ def run_menu():
     print("********** My Movies Database **********")
     print("""
 Menu:
+0. Exit
 1. List movies
 2. Add movie
 3. Delete movie
