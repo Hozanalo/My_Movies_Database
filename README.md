@@ -1,42 +1,45 @@
 # My Movies Database
 
-## About the Project
+A Python command-line application for managing a personal movie collection, with features for searching, sorting, and viewing rating statistics.
 
-A Python command-line application for managing a personal movie collection.
+## Current Features
 
-This project is part of my Python learning journey. It will grow over time as I learn new concepts and add more features.
-
-## Features
-
-- Display all available movies
-- Add new movies
-- Update existing movies
-- Delete movies
-- View movie statistics
-- Select a random movie
+- List movies and their ratings
+- Add, update, and delete movies
+- View rating statistics
+- Pick a random movie
 - Search for movies
 - Sort movies by rating
+- Exit from the main menu
+
+## How to Run
+
+Run the app from the project folder:
+
+```bash
+python movies.py
+```
+
+Choose an option from the menu. Enter `0` to exit.
+
+## Roadmap
+
+### Completed
+
+- [x] Build the original movie menu and commands
+- [x] Add `0. Exit` to the menu
+
+### Next Steps: Movies App Reloaded
+
+- [ ] Store a release year alongside each movie’s rating
+- [ ] Save movies in JSON so changes survive a restart
+- [ ] Improve invalid-input handling so users can try again
 
 ## Technologies
 
 - Python
-- Git & GitHub
+- Git and GitHub
 
-## How to Run
+## Status
 
-Coming soon
-
-## Project Roadmap
-
-- [x] Display all available movies
-- [x] Add new movies
-- [x] Update existing movies
-- [x] Delete movies
-- [x] View movie statistics
-- [x] Select a random movie
-- [x] Search for movies
-- [x] Sort movies by rating
-
-## Project Status 
-
-**In Development**
+In development. Movies are currently stored in memory, so changes are lost when the app closes.
