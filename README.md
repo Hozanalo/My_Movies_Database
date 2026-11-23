@@ -27,13 +27,13 @@ Choose an option from the menu. Enter `0` to exit.
 ### Completed
 
 - [x] Build the original movie menu and commands
-- [x] Add `0. Exit` to the menu
+- [x] Add `Exit` function to the menu
+- [x] Store a release year alongside each movie’s rating
 
 ### Next Steps: Movies App Reloaded
 
-- [ ] Store a release year alongside each movie’s rating
 - [ ] Save movies in JSON so changes survive a restart
-- [ ] Improve invalid-input handling so users can try again
+
 
 ## Technologies
 
