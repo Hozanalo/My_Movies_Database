@@ -1,18 +1,27 @@
 # My Movies Database
 
-A Python command-line application for managing a personal movie collection, with features for searching, sorting, and viewing rating statistics.
+A Python command-line app for managing a personal movie collection. Movie titles, ratings, and release years are stored in a JSON file so changes are available the next time you run the app.
 
-## Current Features
+## Features
 
-- List movies and their ratings
-- Add, update, and delete movies
+- List, add, update, and delete movies
+- Search movies by title
+- Sort movies by rating
 - View rating statistics
 - Pick a random movie
-- Search for movies
-- Sort movies by rating
-- Exit from the main menu
+- Validate movie ratings and release years
 
-## How to Run
+## Requirements
+
+- Python 3
+
+## Getting Started
+
+Make sure `data.json` exists in the project folder and contains valid JSON. To start with an empty collection, its contents can be:
+
+```json
+{}
+```
 
 Run the app from the project folder:
 
@@ -20,26 +29,10 @@ Run the app from the project folder:
 python movies.py
 ```
 
-Choose an option from the menu. Enter `0` to exit.
+Choose an option from the menu. Select `0` to exit.
 
-## Roadmap
+## Project Files
 
-### Completed
-
-- [x] Build the original movie menu and commands
-- [x] Add `Exit` function to the menu
-- [x] Store a release year alongside each movie’s rating
-
-### Next Steps: Movies App Reloaded
-
-- [ ] Save movies in JSON so changes survive a restart
-
-
-## Technologies
-
-- Python
-- Git and GitHub
-
-## Status
-
-In development. Movies are currently stored in memory, so changes are lost when the app closes.
+- `movies.py` — menu, prompts, and movie features
+- `movie_storage.py` — reads and saves movie data
+- `data.json` — movie collection
