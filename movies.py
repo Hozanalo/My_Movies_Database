@@ -1,55 +1,11 @@
 import random
 from datetime import datetime
-
+import movie_storage
 
 def main():
     # Dictionary to store the movies and the rating
-    movies = {
-        "The Shawshank Redemption": {
-            "rating": 9.5,
-            "year": 1994
-        },
-        "Pulp Fiction": {
-            "rating": 8.8,
-            "year": 1994
-        },
-        "The Room": {
-            "rating": 3.6,
-            "year": 2003
-        },
-        "The Godfather": {
-            "rating": 9.2,
-            "year": 1972
-        },
-        "The Godfather: Part II": {
-            "rating": 9.0,
-            "year": 1974
-        },
-        "The Dark Knight": {
-            "rating": 9.0,
-            "year": 2008
-        },
-        "12 Angry Men": {
-            "rating": 8.9,
-            "year": 1957
-        },
-        "Everything Everywhere All At Once": {
-            "rating": 8.9,
-            "year": 2022
-        },
-        "Forrest Gump": {
-            "rating": 8.8,
-            "year": 1994
-        },
-        "Star Wars: Episode V": {
-            "rating": 8.7,
-            "year": 1980
-        },
-        "q": {
-            "rating": 8.1,
-            "year": 1977
-        }
-    }
+    movies = movie_storage.get_movies()
+
 
     # Handle user input handling for options 0-8.
     # Display an error message for invalid choices and allow users to select another option
@@ -179,9 +135,16 @@ def add_new_movie(movies):
     new_movie_rating = get_valid_rating()
     new_movie_year = get_valid_year()
 
+    movie_storage.add_movie(
+        new_movie_name,
+        new_movie_year,
+        new_movie_rating
+    )
+
+    # update the in-memory data
     movies[new_movie_name] = {
-        "rating": new_movie_rating,
-        "year": new_movie_year
+        "year": new_movie_year,
+        "rating": new_movie_rating
     }
 
     print(f"Movie {new_movie_name} with rating: {new_movie_rating} and year: {new_movie_year} successfully added")
@@ -195,6 +158,7 @@ def delete_movie(movies):
     ask_user_delete = input("Enter movie name to delete: ").strip()
 
     if ask_user_delete in movies:
+        movie_storage.delete_movie(ask_user_delete)
         del movies[ask_user_delete]
         print(f"{ask_user_delete} successfully deleted")
 
@@ -213,6 +177,7 @@ def update_movie_rate(movies):
     else:
         new_movie_rating = get_valid_rating()
 
+        movie_storage.update_movie(ask_user_update_name, new_movie_rating)
         movies[ask_user_update_name]["rating"] = new_movie_rating
 
         print(f"Movie {ask_user_update_name} successfully updated")
@@ -236,7 +201,7 @@ def movies_stats(movies):
         rating_median = (values[(n-1)//2] + values[n//2]) / 2
 
         print(f"- Average rating: {rating_average:.2f}")
-        print(f"- Median rating: {rating_median}")
+        print(f"- Median rating: {rating_median:.2f}")
 
         # Display all movies with the highest rating
         print("- Best movies:")
