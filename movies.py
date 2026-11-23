@@ -1,21 +1,55 @@
 import random
+from datetime import datetime
 
 
 def main():
     # Dictionary to store the movies and the rating
     movies = {
-        "The Shawshank Redemption": 9.5,
-        "Pulp Fiction": 8.8,
-        "The Room": 3.6,
-        "The Godfather": 9.2,
-        "The Godfather: Part II": 9.0,
-        "The Dark Knight": 9.0,
-        "12 Angry Men": 8.9,
-        "Everything Everywhere All At Once": 8.9,
-        "Forrest Gump": 8.8,
-        "Star Wars: Episode V": 8.7
+        "The Shawshank Redemption": {
+            "rating": 9.5,
+            "year": 1994
+        },
+        "Pulp Fiction": {
+            "rating": 8.8,
+            "year": 1994
+        },
+        "The Room": {
+            "rating": 3.6,
+            "year": 2003
+        },
+        "The Godfather": {
+            "rating": 9.2,
+            "year": 1972
+        },
+        "The Godfather: Part II": {
+            "rating": 9.0,
+            "year": 1974
+        },
+        "The Dark Knight": {
+            "rating": 9.0,
+            "year": 2008
+        },
+        "12 Angry Men": {
+            "rating": 8.9,
+            "year": 1957
+        },
+        "Everything Everywhere All At Once": {
+            "rating": 8.9,
+            "year": 2022
+        },
+        "Forrest Gump": {
+            "rating": 8.8,
+            "year": 1994
+        },
+        "Star Wars: Episode V": {
+            "rating": 8.7,
+            "year": 1980
+        },
+        "q": {
+            "rating": 8.1,
+            "year": 1977
+        }
     }
-
 
     # Handle user input handling for options 0-8.
     # Display an error message for invalid choices and allow users to select another option
@@ -72,7 +106,8 @@ Menu:
 
     """)
 
-# Rating input validation
+
+# movie rating input validation
 def get_valid_rating():
     while True:
         user_input = input("Enter movie rating (1-10): ")
@@ -83,10 +118,31 @@ def get_valid_rating():
             if 1 <= rating <= 10 and round(rating, 2) == rating:
                 return rating
 
-            print("Invalid rating! Enter 1-10.")
+            print("Invalid rating! Enter a number from 1 to 10 with at most 2 decimal places.")
 
         except ValueError:
             print("Invalid input! Enter a valid number.")
+
+
+
+# movie year input validation
+def get_valid_year():
+    current_year = datetime.now().year
+
+    while True:
+        user_input = input("Enter movie release year: ").strip()
+
+        try:
+            year = int(user_input)
+
+            if 1888 <= year <= current_year + 5:
+                return year
+
+            print(f"Enter a year between 1888 and {current_year + 5}.")
+
+        except ValueError:
+            print("Invalid input! Enter a valid year.")
+
 
 
 # Display all available Movies
@@ -95,32 +151,40 @@ def list_all_movies(movies):
         print("There are no movies to display")
     else:
         total_movies = len(movies)
-        print(f"\n--- {total_movies} movies in total ---")
+        print(f"\n------- {total_movies} movies in total -------")
 
-        for movie, rate in movies.items():
-            print(f"- {movie}: {rate}")
+        for title, data in movies.items():
+            rating = data["rating"]
+            year = data["year"]
+            print(f"- {title}: {rating} - {year}")
 
     input("\nPress Enter to go back to the main menu...")
 
 
 # Add new movie to Movies list. Validate and check user input
 def add_new_movie(movies):
-    new_movie_name = input("Enter new movie name: ").strip()
+    while True:
+        new_movie_name = input("Enter new movie name: ").strip()
 
-    if not new_movie_name:
-        print("Movie name cannot be empty!")
-        input("\nPress Enter to go back to the main menu...")
-        return
+        if not new_movie_name:
+            print("Movie name cannot be empty! Try again.")
+            continue
 
-    if new_movie_name in movies:
-        print("Movie already exists!")
-        input("\nPress Enter to go back to the main menu...")
-        return
+        if new_movie_name in movies:
+            print("Movie already exists! Try again.")
+            continue
+
+        break
 
     new_movie_rating = get_valid_rating()
+    new_movie_year = get_valid_year()
 
-    movies[new_movie_name] = new_movie_rating
-    print(f"Movie {new_movie_name} with rating {new_movie_rating} successfully added")
+    movies[new_movie_name] = {
+        "rating": new_movie_rating,
+        "year": new_movie_year
+    }
+
+    print(f"Movie {new_movie_name} with rating: {new_movie_rating} and year: {new_movie_year} successfully added")
 
     input("\nPress Enter to go back to the main menu...")
 
@@ -128,7 +192,7 @@ def add_new_movie(movies):
 # Delete movie.
 def delete_movie(movies):
 
-    ask_user_delete = input("Enter movie name to delete: ")
+    ask_user_delete = input("Enter movie name to delete: ").strip()
 
     if ask_user_delete in movies:
         del movies[ask_user_delete]
@@ -142,48 +206,49 @@ def delete_movie(movies):
 
 # update the rating of an existing movie.
 def update_movie_rate(movies):
-    ask_user_update_name = input("Enter movie name: ")
+    ask_user_update_name = input("Enter movie name: ").strip()
 
     if ask_user_update_name not in movies:
         print(f"Movie {ask_user_update_name} doesn't exist!")
     else:
         new_movie_rating = get_valid_rating()
 
-        movies[ask_user_update_name] = new_movie_rating
+        movies[ask_user_update_name]["rating"] = new_movie_rating
 
         print(f"Movie {ask_user_update_name} successfully updated")
 
     input("\nPress Enter to go back to the main menu...")
 
 
-# Movies stats.
+
 def movies_stats(movies):
     if len(movies) == 0:
         print("There are no movies in the list to display their stats")
     else:
-        highest_rating = max(movies.values())
-        lowest_rating = min(movies.values())
-        rating_average = sum(movies.values()) / len(movies)
+        ratings = [movie["rating"] for movie in movies.values()]
 
-        # Find median rating
-        values = sorted(movies.values())
+        highest_rating = max(ratings)
+        lowest_rating = min(ratings)
+        rating_average = sum(ratings) / len(ratings)
+
+        values = sorted(ratings)
         n = len(values)
         rating_median = (values[(n-1)//2] + values[n//2]) / 2
 
         print(f"- Average rating: {rating_average:.2f}")
         print(f"- Median rating: {rating_median}")
 
-        # Print all movies with the highest rating
+        # Display all movies with the highest rating
         print("- Best movies:")
-        for movie, rating in movies.items():
-            if rating == highest_rating:
-                print(f"  {movie}, {rating}")
+        for title, data in movies.items():
+            if data["rating"] == highest_rating:
+                print(f"  {title}, {data['rating']}")
 
-        # Print all movies with the lowest rating
+        # Display all movies with the lowest rating
         print("- Worst movies:")
-        for movie, rating in movies.items():
-            if rating == lowest_rating:
-                print(f"  {movie}, {rating}")
+        for title, data in movies.items():
+            if data["rating"] == lowest_rating:
+                print(f"  {title}, {data['rating']}")
 
     input("\nPress Enter to go back to the main menu...")
 
@@ -193,7 +258,7 @@ def random_movie(movies):
         print("There are no movies to choose from")
     else:
         movie = random.choice(list(movies.keys()))
-        print(f"Random movie: {movie}, {movies[movie]}")
+        print(f"Random movie: {movie}, {movies[movie]['rating']} ({movies[movie]['year']})")
 
     input("\nPress Enter to go back to the main menu...")
 
@@ -202,13 +267,18 @@ def random_movie(movies):
 def search_movies(movies):
     ask_user_search_movies = input("Enter part of movie name: ").strip().lower()
 
+    if not ask_user_search_movies:
+        print("Search cannot be empty!")
+        input("\nPress Enter to go back to the main menu...")
+        return
+
     if len(movies) == 0:
         print("There are no movies to choose from")
     else:
         found = False
-        for movie, rate in movies.items():
-            if ask_user_search_movies in movie.lower():
-                print(f"{movie}, {rate}")
+        for title, data in movies.items():
+            if ask_user_search_movies in title.lower():
+                print(f"{title}, {data['rating']} ({data['year']})")
                 found = True
 
         if not found:
@@ -222,10 +292,14 @@ def movies_sorted(movies):
     if len(movies) == 0:
         print("There are no movies in the list to show!")
     else:
-        sorted_movies = sorted(movies.items(), key=lambda item:item[1], reverse=True)
+        sorted_movies = sorted(
+            movies.items(),
+            key = lambda item: item[1]["rating"],
+            reverse = True
+        )
 
-        for movie, rate in sorted_movies:
-            print(f"{movie}, {rate}")
+        for title, data in sorted_movies:
+            print(f"{title}, {data['rating']}")
 
     input("\nPress Enter to go back to the main menu...")
 

@@ -1,3 +1,5 @@
 .idea/
 .venv/
 local_docs/
+__pycache__/
+*.pyc
